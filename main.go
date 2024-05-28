@@ -2,7 +2,6 @@ package hash_colour
 
 import (
    "fmt"
-   _ "fmt"
    "image/color"
    "math/bits"
 
@@ -42,7 +41,7 @@ func HSLuv(s string) (c color.Color) {
    return
 }
 
-func HPLuv24(s string) (c color.Color) {
+func HSLuv24(s string) (c color.Color) {
    sat, luv, hue := Colour5524(s)
    c = gc.HPLuv(hue, float64(sat+LUV_FLOOR)/100, float64(luv+LUV_FLOOR)/100)
    return
@@ -50,7 +49,7 @@ func HPLuv24(s string) (c color.Color) {
 
 func HexColour(c color.Color) (hex string) {
    r, g, b, _ := c.RGBA()
-   hex = "#" + fmt.Sprintf("%0x", r) + fmt.Sprintf("%0x", g) + fmt.Sprintf("%0x", b)
+   hex = "#" + fmt.Sprintf("%0x", r>>8) + fmt.Sprintf("%0x", g>>8) + fmt.Sprintf("%0x", b>>8)
    return
 }
 
